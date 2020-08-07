@@ -16,4 +16,5 @@ public class Player {
             balls.add(new CaptureBall(type));
         }
     }
+    
 }

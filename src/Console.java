@@ -4,6 +4,10 @@ public class Console {
         System.out.println(s);
     }
 
+    public void outs(String format, Object... args) {
+        System.out.printf((String)format, args);
+    }
+
 
 
 }
