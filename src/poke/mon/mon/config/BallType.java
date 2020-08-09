@@ -1,3 +1,5 @@
+package poke.mon.mon.config;
+
 public enum BallType {
     NORMAL("ノーマル捕獲玉", 0, 6), 
     SUPER("スーパー捕獲玉", 20, 3), 
@@ -13,15 +15,15 @@ public enum BallType {
         this.quantity    = quantity;
     }
 
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
-    int getCorrectRatee() {
+    public int getCorrectRate() {
         return this.correctRate;
     }
 
-    int getQuantity() {
+    public int getQuantity() {
         return this.quantity;
     }
 }

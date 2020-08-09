@@ -1,9 +1,14 @@
+package poke.mon.mon.config;
+
 import java.util.Random;
+import poke.mon.mon.util.Console;
 
 public enum MonsterType {
-    ZAKOMON("ザコモン", 30, 20, 20, 30, 72), FUTSUMON("フツモン", 50, 20, 30, 30, 50), TSUYOMON("ツヨモン", 100,
-            50, 30, 25,
-            28), BOSSMON("ボスモン", 100, 50, 50, 10, 25), RAREMON("レアモン", 150, 100, 100, 5, 14);
+    ZAKOMON("ザコモン", 30, 20, 20, 30, 72, "ᑕꙬ̂ᑐ"), 
+    FUTSUMON("フツモン", 50, 20, 30, 30, 50, "(´・с_・｀)"), 
+    TSUYOMON("ツヨモン", 100, 50, 30, 25, 28, "(ﾟ益ﾟ)"), 
+    BOSSMON("ボスモン", 100, 50, 50, 10, 25, "(・ｘ・)"), 
+    RAREMON("レアモン", 150, 100, 100, 5, 14, "(@Θ@)");
 
     private String name;
     private int    hp;
@@ -11,15 +16,18 @@ public enum MonsterType {
     private int    defense;
     private int    encountRate;
     private int    captureRate;
+    private String icon;
     private static Console con = new Console();
+    private static final int POINT_RATE = 10;
 
-    MonsterType(String name, int hp, int power, int defense, int encountRate, int captureRate) {
+    MonsterType(String name, int hp, int power, int defense, int encountRate, int captureRate, String icon) {
         this.name    = name;
         this.hp      = hp;
         this.power   = power;
         this.defense = defense;
         this.encountRate = encountRate;
         this.captureRate = captureRate;
+        this.icon = icon;
     }
 
     /**
@@ -73,15 +81,15 @@ public enum MonsterType {
     }
 
     public int getHp() {
-        return hp;
+        return this.hp;
     }
 
     public int getPower() {
-        return power;
+        return this.power;
     }
 
     public int getDefense() {
-        return defense;
+        return this.defense;
     }
 
     public int getEncountRate() {
@@ -89,6 +97,15 @@ public enum MonsterType {
     }
 
     public int getCaptureRate() {
-        return captureRate;
+        return this.captureRate;
+    }
+
+    public String getIcon() {
+        return this.icon;
+    }
+
+    public int calcPoints() {
+        // (HP+攻撃+防御)*10
+      return (this.getHp() + this.getPower() + this.getDefense()) * POINT_RATE;
     }
 }
