@@ -1,5 +1,8 @@
 package poke.mon.mon;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import poke.mon.mon.action.IAction;
@@ -30,8 +33,14 @@ public class Playground {
         this.turn        = 1;
     }
 
-    public void startMessage() {
-        this.con.out("-----モンスター捕獲ゲーム　スタート！！-----");
+    public void showGameTitle() {
+        String curDir = this.con.getCurDir();
+
+        String absoluteFilePath = String.format(
+            "%s\\src\\poke\\mon\\mon\\title.game", curDir);
+        
+            Path path = Paths.get(absoluteFilePath);
+        this.con.showFileContents(path);
     }
 
     public void battle() {
@@ -130,12 +139,16 @@ public class Playground {
 
     }
 
-    public void showResultAll() {
+    public void showGameResult() {
         this.con.typewriter(this.player.getPointsStr() + " points.", 50);
         int count = 0;
         for (Monster mon : this.player.getCapturedMonsterList()) {
             count++;
-            this.con.typewriter(count + " : " + mon.getName() + " " + mon.getIcon() + " " + mon.getRecordedPoints() + "points.", 50);
+            this.con
+                    .typewriter(
+                            count + " : " + mon.getName() + " " + mon.getIcon() + " "
+                                    + mon.getRecordedPoints() + "points.",
+                            50);
         }
     }
 

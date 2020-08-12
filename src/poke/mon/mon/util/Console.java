@@ -1,9 +1,23 @@
 package poke.mon.mon.util;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Console {
+
+    public void showFileContents(Path path) {
+        try (Stream<String> lines =  Files.lines(path, StandardCharsets.UTF_8)) {
+            lines.forEach(System.out::println);
+            this.randomSleep(100);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void out(String s) {
         System.out.println(s);
@@ -47,24 +61,34 @@ public class Console {
     }
 
     private void displayUserPrompt(String mess) {
-        System.out.printf("%n%s > ", mess);
+        String prompot = String.format("%n%s > ", mess);
+        this.out(prompot);
     }
 
     private boolean isOutOfRange(int number, int min, int max) {
         return number < min || number > max;
     }
 
+    /**
+     * 渡された文字列を指定されたスピードで表示する（末尾改行つき）
+     * @param mess 表示するメッセージ
+     * @param speed 表示スピード指定
+     */
     public void typewriter(String mess, int speed) {
         this.typewriterNoLf(mess, speed);
-        this.outNoLf("\n");
+        this.out();
     }
 
+    /**
+     * 渡された文字列を指定されたスピードで表示する（末尾改行なし）
+     * @param mess 表示するメッセージ
+     * @param speed 表示スピード指定
+     */
     public void typewriterNoLf(String mess, int speed) {
 
         for (char c : mess.toCharArray()) {
             this.outNoLf(String.valueOf(c));
             this.randomSleep(speed);
-
         }
     }
 
@@ -75,5 +99,13 @@ public class Console {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * かれんとでぃれくと
+     * @return
+     */
+    public String getCurDir() {
+      return System.getProperty("user.dir");
     }
 }
