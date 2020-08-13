@@ -108,4 +108,8 @@ public class Console {
     public String getCurDir() {
       return System.getProperty("user.dir");
     }
+
+    public Path concatPath(String... dirs) {
+        return Path.of(System.getProperty("user.dir"), dirs);
+    }
 }

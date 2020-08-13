@@ -17,6 +17,7 @@ import poke.mon.mon.util.Console;
 public class Playground {
 
     Console con;
+    Path titleFilePath;
     Player  player;
     Monster currentMonster;
     int     battleTimes = 0;
@@ -34,13 +35,7 @@ public class Playground {
     }
 
     public void showGameTitle() {
-        String curDir = this.con.getCurDir();
-
-        String absoluteFilePath = String.format(
-            "%s\\src\\poke\\mon\\mon\\title.game", curDir);
-        
-            Path path = Paths.get(absoluteFilePath);
-        this.con.showFileContents(path);
+        this.con.showFileContents(this.titleFilePath);
     }
 
     public void battle() {
@@ -150,6 +145,10 @@ public class Playground {
                                     + mon.getRecordedPoints() + "points.",
                             50);
         }
+    }
+
+    public void catchTitleFile(Path aa) {
+        this.titleFilePath = aa;
     }
 
 }
