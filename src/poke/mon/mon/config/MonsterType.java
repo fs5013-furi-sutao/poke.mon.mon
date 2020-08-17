@@ -20,7 +20,8 @@ public enum MonsterType {
     private static Console con = new Console();
     private static final int POINT_RATE = 10;
 
-    MonsterType(String name, int hp, int power, int defense, int encountRate, int captureRate, String icon) {
+    MonsterType(String name, int hp, int power, int defense, int encountRate
+        , int captureRate, String icon) {
         this.name    = name;
         this.hp      = hp;
         this.power   = power;

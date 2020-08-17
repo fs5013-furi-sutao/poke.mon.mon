@@ -6,8 +6,8 @@ import poke.mon.mon.config.BallType;
 
 public class Player {
 
-    private List<CaptureBall>     balls;
-    private int           points;
+    private List<CaptureBall> balls;
+    private int points;
     private List<Monster> capturedMonsterList;
 
     public Player() {
@@ -46,7 +46,7 @@ public class Player {
     }
 
     public String getPointsStr() {
-      return String.valueOf(this.points);
+        return String.valueOf(this.points);
     }
 
     public List<CaptureBall> getBalls() {

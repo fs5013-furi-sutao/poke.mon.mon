@@ -31,7 +31,9 @@ public class CaptureBall {
     }
 
     /**
-     * すべてのボールの確率を算出し、 もし、最大の確率が 100% を超えていたら 最大の確率のものを 100% とし、残りは相対的な確立に修正する
+     * すべてのボールの確率を算出し、 
+     * もし、最大の確率が 100% を超えていたら 最大の確率のものを 100% とし、
+     * 残りは相対的な確率に修正する
      * 
      * @param mon
      * @return
@@ -49,8 +51,9 @@ public class CaptureBall {
         BigDecimal rigidMaxRate = BigDecimal.valueOf(maxRate);
         BigDecimal rigidRange   = BigDecimal.valueOf(100);
 
-        BigDecimal correctionRate = rigidRange.divide(rigidMaxRate, 2/* ← scale */
-                , RoundingMode.HALF_UP /* ← 四捨五入 */
+        BigDecimal correctionRate = rigidRange.divide(rigidMaxRate
+            , 2/* ← scale */
+            , RoundingMode.HALF_UP /* ← 四捨五入 */
         );
 
         BigDecimal rigidMineRate = BigDecimal.valueOf(mineRate);
@@ -76,7 +79,9 @@ public class CaptureBall {
 
     public void reduce() {
         if (this.quantity == 0) {
-            throw new RuntimeException("すでに所持数ゼロにもかかわらず、所持数を減算しようとしています.");
+            throw new RuntimeException(
+                "すでに所持数ゼロにもかかわらず、所持数を減算しようとしています."
+            );
         }
         this.quantity--;
     }

@@ -1,8 +1,6 @@
 package poke.mon.mon;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import poke.mon.mon.action.IAction;
@@ -18,20 +16,20 @@ public class Playground {
 
     Console con;
     Path titleFilePath;
-    Player  player;
+    Player player;
     Monster currentMonster;
-    int     battleTimes = 0;
-    int     turn        = 0;
+    int battleTimes = 0;
+    int turn = 0;
 
     public Playground() {
-        this.con    = new Console();
+        this.con = new Console();
         this.player = new Player();
     }
 
     private Playground(final Builder builder) {
         this();
         this.battleTimes = builder.battleTimes;
-        this.turn        = 1;
+        this.turn = 1;
     }
 
     public void showGameTitle() {
@@ -91,15 +89,24 @@ public class Playground {
         List<Selection> menu = new ArrayList<>();
 
         for (CaptureBall ball : player.getBalls()) {
-            IAction   action   = new UseBallAction(ball);
-            String    ballInfo = ball.infomationAgainstMonster(currentMonster);
-            Selection sel      = new Selection.Builder().menuLine(ballInfo).action(action).build();
+            IAction action = new UseBallAction(ball);
+            String ballInfo = ball.infomationAgainstMonster(currentMonster);
+
+            Selection sel = new Selection.Builder()
+                .menuLine(ballInfo)
+                .action(action)
+                .build();
+
             menu.add(sel);
         }
-        String    additionalMenu = "モンスターを見逃す";
-        IAction   action         = new OverlookMonsterAction();
-        Selection sel            =
-                new Selection.Builder().menuLine(additionalMenu).action(action).build();
+        String additionalMenu = "モンスターを見逃す";
+        IAction action = new OverlookMonsterAction();
+
+        Selection sel = new Selection.Builder()
+            .menuLine(additionalMenu)
+            .action(action)
+            .build();
+
         menu.add(sel);
 
         return menu;
@@ -118,7 +125,8 @@ public class Playground {
     public static class Builder {
         int battleTimes = 0;
 
-        public Builder() {}
+        public Builder() {
+        }
 
         public Builder battleTimes(final int times) {
             this.battleTimes = times;
@@ -131,19 +139,21 @@ public class Playground {
             }
             return new Playground(this);
         }
-
     }
 
     public void showGameResult() {
         this.con.typewriter(this.player.getPointsStr() + " points.", 50);
+
         int count = 0;
         for (Monster mon : this.player.getCapturedMonsterList()) {
             count++;
-            this.con
-                    .typewriter(
-                            count + " : " + mon.getName() + " " + mon.getIcon() + " "
-                                    + mon.getRecordedPoints() + "points.",
-                            50);
+            String mess = String.format("%d : %s %s %dpoints."
+                , count
+                , mon.getName()
+                , mon.getIcon()
+                , mon.getRecordedPoints());
+
+            this.con.typewriter(mess, 50);
         }
     }
 

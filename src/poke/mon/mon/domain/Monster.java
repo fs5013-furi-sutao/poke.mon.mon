@@ -19,7 +19,6 @@ public class Monster {
     }
 
     public void firstMessage() {
-        // ツヨモン(HP:100 攻撃:50 防御:30)が現れた!
         String mess = String
                 .format(
                         "%s(HP:%d 攻撃:%d 防御:%d) が現れた！ ... ",
@@ -58,7 +57,11 @@ public class Monster {
     }
 
     public void showEncountMessage(int turn) {
-        String mess = String.format("%d匹目のモンスターが出現... ============================== ", turn);
+        String mess = String.format(
+            "%d匹目のモンスターが出現... ============================== "
+            , turn
+        );
+
         this.con.typewriter(mess, 30);
         this.con.out();
     }

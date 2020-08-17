@@ -10,10 +10,6 @@ public class UseBallAction implements IAction {
     private CaptureBall ball;
     private Console     con;
 
-    /**
-     * 
-     * @param ball
-     */
     public UseBallAction(CaptureBall ball) {
         this.ball = ball;
         this.con  = new Console();
